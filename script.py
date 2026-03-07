@@ -3,7 +3,12 @@ def main():
     prices = [1.2, 0.8]
     quantities = [10, 20]
     inv = create_inventory(products, prices, quantities)
-    print(get_product_info(inv, 'appple'))
+    print(get_product_info(inv, 'banana'))
+    print(calculate_total_inventory_value(inv))
+    bulk_update_quantities(inv, {'apple': 5, 'banana': 10})
+    print(inv)
+    remove_product(inv, 'banana')
+    print(inv)
 
 def create_inventory(products, prices, quantities):
     inv = {}
@@ -21,6 +26,25 @@ def get_product_info(inventory, product_name):
     except:
         print('Error: Product not found')
 
+def calculate_total_inventory_value(inventory):
+    value = 0
+    for i in inventory:
+        value += inventory[i]['price']
+    return value
+
+def remove_product(inventory, product_name):
+    try:
+        del inventory[product_name]
+        return inventory
+    except:
+        print('Error: Product not found')
+
+def bulk_update_quantities(inventory, quantities):
+    for name in quantities:
+        try:
+            inventory[name]['quantity'] = quantities[name]
+        except:
+            print(f'Error: {name} not found')
 
 if __name__ == "__main__":
     main()
