@@ -43,7 +43,7 @@ def remove_product(inventory, product_name):
 
 def apply_discount(inventory, percentage):
     for item in inventory:
-        inventory[item]['price'] *= (1 - percentage)
+        inventory[item]['price'] *= (1 - percentage/100)
 
 def low_stock_alert(inventory, threshold):
     low_stock = []
