@@ -9,6 +9,8 @@ def main():
     print(inv)
     remove_product(inv, 'banana')
     print(inv)
+    apply_discount(inv, 10)
+    print(inv)
 
 def create_inventory(products, prices, quantities):
     inv = {}
@@ -38,6 +40,17 @@ def remove_product(inventory, product_name):
         return inventory
     except:
         print('Error: Product not found')
+
+def apply_discount(inventory, percentage):
+    for item in inventory:
+        inventory[item]['price'] *= (1 - percentage)
+
+def low_stock_alert(inventory, threshold):
+    low_stock = []
+    for item in inventory:
+        if inventory[item]['quantity'] < threshold:
+            low_stock.append(item)
+    return low_stock
 
 def bulk_update_quantities(inventory, quantities):
     for name in quantities:
